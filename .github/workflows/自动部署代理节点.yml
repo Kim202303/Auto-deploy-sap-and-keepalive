@@ -250,14 +250,7 @@ jobs:
         echo "SPACE=$SPACE" >> $GITHUB_ENV
 
         # 使用获取的组织和空间重新登录
-        # cf login -a ${{ env.CF_API }} -u "${{ secrets.EMAIL }}" -p "${{ secrets.PASSWORD }}" -o "$ORG" -s "$SPACE"
-        cf login -a ${{ env.CF_API }} -u "${{ secrets.EMAIL }}" -p "${{ secrets.PASSWORD }}" -o "${{ secrets.CF_ORG }}" -s "${{ secrets.CF_SPACE }}"
-
-        # 确保 ORG 和 SPACE 变量被设置用于后续的详细信息输出
-        echo "ORG=${{ secrets.CF_ORG }}" >> $GITHUB_ENV
-        echo "SPACE=${{ secrets.CF_SPACE }}" >> $GITHUB_ENV
-        
-        echo "已成功登录并指定目标: Org ${{ secrets.CF_ORG }}, Space ${{ secrets.CF_SPACE }}"
+        cf login -a ${{ env.CF_API }} -u "${{ secrets.EMAIL }}" -p "${{ secrets.PASSWORD }}" -o "$ORG" -s "$SPACE"
 
     - name: Deploy application
       run: |
